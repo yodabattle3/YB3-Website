@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YB3 Executor</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to YB3 Executor</h1>
+    <p>Your ultimate hack client for Roblox.</p>
+    <button onclick="copyToClipboard('https://discord.com/channels/1370632127263281223/1371066574336692394')">Download</button>
+    <button onclick="copyToClipboard('https://discord.com/invite/kJUexjKXty')">Discord</button>
+    <p id="message" style="margin-top: 20px;"></p>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                document.getElementById('message').innerText = "Copied";
+                setTimeout(() => {
+                    document.getElementById('message').innerText = "";
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,47 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YB3 Executor</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        button {
-            background-color: white;
-            color: black;
-            border: none;
-            padding: 15px 30px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        button:hover {
-            background-color: gray;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YB3 Executor</title>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0f172a, #000000);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Card Container */
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Pulsing Logo Animation */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px #76b5ff88;
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px #76b5ffcc;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px #76b5ff88;
+      }
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      border: 2px solid #76b5ff;
+      animation: pulse 2.5s infinite ease-in-out;
+      object-fit: cover;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #76b5ff;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #c0c0c0;
+      margin-bottom: 30px;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .btn-wrapper {
+      position: relative;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      background: linear-gradient(145deg, #ffffff, #cccccc);
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #76b5ff;
+      color: #000;
+      transform: translateY(-2px);
+    }
+
+    .copied-message {
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: #76ff76;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .copied-message.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to YB3 Executor</h1>
-    <p>Your ultimate hack client for Roblox.</p>
-    <button onclick="copyToClipboard('https://discord.com/channels/1370632127263281223/1371066574336692394')">Download</button>
-    <button onclick="copyToClipboard('https://discord.gg/UZsAMVqV')">Discord</button>
-    <p id="message" style="margin-top: 20px;"></p>
+  <div class="card">
+    <!-- Space Logo -->
+    <img class="logo" src="A_digital_graphic_features_the_text_&quot;YB3_Executor&quot;.png" alt="YB3 Logo" />
 
-    <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                document.getElementById('message').innerText = "Copied";
-                setTimeout(() => {
-                    document.getElementById('message').innerText = "";
-                }, 2000);
-            });
-        }
-    </script>
+    <h1>YB3 Executor</h1>
+    <p>Your ultimate tool for Roblox enhancement</p>
+
+    <div class="button-group">
+      <div class="btn-wrapper">
+        <button onclick="copyToClipboard(this, 'https://discord.com/channels/1370632127263281223/1371066574336692394')">Download</button>
+        <div class="copied-message">Copied!</div>
+      </div>
+      <div class="btn-wrapper">
+        <button onclick="copyToClipboard(this, 'https://discord.com/invite/kJUexjKXty')">Join Discord</button>
+        <div class="copied-message">Copied!</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyToClipboard(button, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const msg = button.parentElement.querySelector('.copied-message');
+        msg.classList.add('show');
+        setTimeout(() => {
+          msg.classList.remove('show');
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
